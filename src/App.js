@@ -1,23 +1,139 @@
-import logo from './logo.svg';
-import './App.css';
+// Import Our Components
+import AllLogs from "./pages/AllLogs"
+import SingleLog from "./pages/SingleLog";
+import Form from "./pages/Form";
 
-function App() {
+// Import React and hooks
+import React, { useState, useEffect } from "react";
+
+// Import Router 6 Component (Route -> Route, Switch -> Routes)
+import {Route, Routes, Link, useNavigate} from "react-router-dom"
+
+/////////////////////////
+// Style Object
+/////////////////////////
+const h1 = {
+  textAlign: "center",
+  margin: "30px",
+};
+
+const button = {
+  backgroundColor: "navy",
+  display: "block",
+  margin: "auto"
+}
+
+function App(props) {
+ 
+
+  ///////////////
+  // State & Other Variables
+  ///////////////
+
+  const navigate = useNavigate()
+  
+  // Our Api Url
+  const url = "https://ba-dailydids-backend.herokuapp.com/dids/";
+
+  // State to Hold The List of Posts
+  const [dids, setDids] = useState([]);
+
+  const nullDid = {
+    activity: "",
+    time: ""
+  }
+
+const [targetDid, setTargetDid] = useState(nullDid)
+
+
+  //////////////
+  // Functions
+  //////////////
+
+// Function to get list of  from API
+const getDid = async () => {
+  const response = await fetch(url);
+  const data = await response.json();
+  setDids(data);
+};
+
+// function to add did
+const addDid = async (newDid) => {
+  const response = await fetch(url, {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(newDid)
+  });
+
+   //update the list of todos
+   getDid()
+  }
+
+   // to select a did to edit
+   const getTargetDid = (dids) => {
+    setTargetDid(dids);
+    navigate("/edit");
+  };
+
+  // update did for our handlesubmit prop
+  const updateDid = async (dids) => {
+    await fetch(url + dids.id, {
+      method: "put",
+       headers: {
+         "Content-Type": "application/json",
+      },
+       body: JSON.stringify(dids),
+     });
+  
+    //update our blog
+    getDid();
+  };
+
+  const deleteDid = async (dids) => {
+    await fetch(url + dids.id, {
+      method: "delete"
+    })
+
+    getDid()
+    navigate("/")
+  }
+
+//////////////
+// useEffects
+//////////////
+// useEffect to get list of dids when page loads
+useEffect(() => {
+  getDid();
+}, []);
+
+  //////////////////////////
+  // Returned JSX
+  //////////////////////////
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1 style={h1}>My Daily Dids</h1>
+      <Link to="/new"><button style={button}>Create A Did</button></Link>
+      <Routes>
+        <Route path="/" element={<AllLogs dids={dids}/>}/>
+        <Route path="/dids/:id" element={<SingleLog 
+        dids={dids} 
+        edit={getTargetDid}
+        deleteDid={deleteDid}
+        />} />
+         <Route path="/new" element={<Form 
+          initialDid={nullDid}
+          handleSubmit={addDid}
+          buttonLabel="Create Did"
+        />} />
+        <Route path="/edit" element={<Form
+          initialDid={targetDid}
+          handleSubmit={updateDid}
+          buttonLabel="Update Did"
+        />} />
+      </Routes>
     </div>
   );
 }
