@@ -2,6 +2,7 @@
 import AllLogs from "./pages/AllLogs"
 import SingleLog from "./pages/SingleLog";
 import Form from "./pages/Form";
+import Modal from "./components/Modal"
 
 // Import React and hooks
 import React, { useState, useEffect } from "react";
@@ -115,7 +116,9 @@ useEffect(() => {
   return (
     <div className="App">
       <h1 style={h1}>My Daily Dids</h1>
+      
       <Link to="/new"><button style={button}>Create A Did</button></Link>
+      
       <Routes>
         <Route path="/" element={<AllLogs dids={dids}/>}/>
         <Route path="/dids/:id" element={<SingleLog 
@@ -134,6 +137,7 @@ useEffect(() => {
           buttonLabel="Update Did"
         />} />
       </Routes>
+      <Modal/>
     </div>
   );
 }
