@@ -24,6 +24,13 @@ const button = {
   margin: "auto"
 }
 
+const div2 = {
+
+  textAlign: "center",
+  margin: "auto"
+}
+
+
 function App(props) {
  
 
@@ -116,7 +123,15 @@ useEffect(() => {
   return (
     <div className="App">
       <h1 style={h1}>My Daily Dids</h1>
-      
+      <div style={div2}>
+        <h2>Based on AM's recommendation for time split (in minutes):</h2>
+        <ol>
+          <li>25% Doing Code Challenges</li>
+          <li>25% Learning New Tech or Solidifying Foundation</li>
+          <li>25% Sending Out Job Application (2 SOLID Applications per hour)</li>
+          <li>25% Networking and Branding</li>
+        </ol>
+      </div>
       <Link to="/new"><button style={button}>Create A Did</button></Link>
       
       <Routes>

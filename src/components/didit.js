@@ -15,9 +15,9 @@ const Did = ({ did }) => {
   return (
     <div style={div}>
       <Link to={`/dids/${did.id}`}>
-        <h1>{did.activity}</h1>
+        <h2>{did.activity}</h2>
       </Link>
-      <h2>{did.time}</h2>
+      <h3>{did.time}</h3>
     </div>
   );
 };
