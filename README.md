@@ -27,7 +27,7 @@ List your routes in a table
 | /dids/:id | delete | remove the did from database (destroy)|
 
 ## User Stories
-Our user is someone who aspires to be CHEESY (Alex Merced)...but isn't there yet. Our user needs to follow AM's advice and continue to put in the 8 hours a day to get there.  Our user will:
+Our user is someone who aspires to be as Gouda as Alex Merced...but skill level is fairly Cheesy. Our user needs to follow AM's advice and continue to put in the 8 hours a day to get there.  Our user will:
 - add did's to the list as necessary
 - add or edit did's/minutes if desired
 - delete did as they want
