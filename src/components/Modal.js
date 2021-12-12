@@ -13,7 +13,7 @@ setModal(!modal)
     return (
         <>
         {/* had to put button on one line as it confused me to have it on multi */}
-        <button onClick={switchModal}className="butn_modal">Open Me</button>
+        <button onClick={switchModal}className="butn_modal">Progress</button>
         
     {modal && (
         <div className="modal">
