@@ -31,7 +31,7 @@ Our user is someone who aspires to be CHEESY (Alex Merced)...but isn't there yet
 - add did's to the list as necessary
 - add or edit did's/minutes if desired
 - delete did as they want
-- see all the dids done to make sure they are on track to make Cheddar ($).
+- see all the dids done to make sure the user is on track to make Cheddar ($) to deposit in users Swiss bank account.
 ## Challenges
 So i had a few challenges.  
 •  I attempted a dropdown and I am almost there using this tutorial(https://www.newline.co/@andreeamaco/react-dropdown-tutorial-for-beginners-create-a-dropdown-menu-from-scratch--9831d197)  I am really close to making it work.</br>
@@ -47,3 +47,4 @@ So i had a few challenges.
 - JS
 - Heroku & Netlify
 - Google/YouTube/Slack
+- Cheezits of course
